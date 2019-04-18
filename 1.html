@@ -1,0 +1,29 @@
+<html>
+<head>
+</head>
+<body>
+<input type="file" id="fileElem"  style="display：none" >
+<button href="#" id="fileSelect" onclick="openBrowse()">Select some files</button>
+</body>
+<script>
+
+
+
+  function openBrowse(){
+    var ie=navigator.appName=="Microsoft Internet Explorer" ? true : false;
+    if(ie){
+
+      document.getElementById("fileElem").click();
+
+    }else{
+
+      var a=document.createEvent("MouseEvents");
+      a.initEvent("click", true, true);
+      document.getElementById("fileElem").dispatchEvent(a);
+
+    }
+  }
+  openBrowse()
+</script>
+
+</html>
