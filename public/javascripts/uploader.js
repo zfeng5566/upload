@@ -24,6 +24,7 @@ const ACCEPT_PARAMES = [
 
 
   'validate',//验证file
+  'onValidateError',//验证失败
   'onStart',//上传开始事件钩子函数
   'onProgress',//上传进度钩子函数
   'onError',//上传失败钩子函数
@@ -37,7 +38,10 @@ export default class SingleUploader {
     this._initprops(params);
   }
 
-
+  /**
+   * 动态添加上传参数
+   * @return {JSON}
+   */
   uploadpramas() {
     return {
       test: 11111
@@ -48,8 +52,9 @@ export default class SingleUploader {
    * 用户自定义文件校验函数，可修改
    * @param file 需要校验的文件
    * @param cb 验证通过调用的回调函数
+   * @param errorcb 验证失败调用的回调函数
    */
-  validate(file, cb) {
+  validate(file, cb, errorcb) {
     cb();
   }
 
@@ -125,9 +130,12 @@ export default class SingleUploader {
   };
 
 
+  onValidateError = (error_msg) => {
+  };
+
   _maxsizevalidate(file, cb) {
     if (file.size > this.maxsize) {
-      this.onError('validate_failed');
+      this.onValidateError('validate_failed');
     } else {
       this.validate(file, cb);
     }
