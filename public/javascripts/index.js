@@ -6,11 +6,14 @@
 */
 
 
-import Uploader from './uploader.js';
+import SingleUploader from './uploader.js';
 
-const uploader = new Uploader();
+const uploader = new SingleUploader({
+  onsuccess(event) {
+    console.log(111111, event);
+  }
+});
 window.uploader = uploader;
 document.getElementById('abc').addEventListener('click', function () {
-  console.log(1111111111)
   uploader.selectFile();
 });
